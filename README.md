@@ -11,10 +11,7 @@
 	
 ## Circuit Diagram:
 
- 
-
-
-
+ <img width="808" height="690" alt="image" src="https://github.com/user-attachments/assets/f7544348-3c0f-4c89-a3bf-953398bab84d" />
 
 ## Theory :
  The Arduino Uno is powered by the ATmega328P, an 8-bit microcontroller that runs at 16 MHz. It has 32 KB of flash memory, 2 KB of SRAM, and 1 KB of EEPROM. The board 
@@ -57,10 +54,42 @@ Step 7: Save Your Work
 •	Save the Circuit: Click "Save" to keep your circuit design and code for future use.
 
 ## Program:
+```
+int gasSensor = A0;     
+int buzzer = 12;        
+int led = 10;           
 
+int threshold = 150;    
+void setup() {
+  pinMode(buzzer, OUTPUT);
+  pinMode(led, OUTPUT);
+  pinMode(gasSensor, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int gasValue = analogRead(gasSensor);   
+  Serial.print("Gas Sensor Value: ");
+  Serial.println(gasValue);
+
+  if (gasValue > threshold) {
+    digitalWrite(led, HIGH);   
+    tone(buzzer, 2000);   
+    delay(300);
+    noTone(buzzer);       
+    delay(300);
+
+  } else {
+    digitalWrite(led, LOW);   
+    noTone(buzzer);            
+    delay(200);
+  }
+}
+```
 ## Output:
 
-   
+https://github.com/user-attachments/assets/680bd230-50d6-4dfe-8d6f-34f53b60594e
 
 ## Result:
+The quality of air is measured using Gas Sensor MQ-2 with Arduino UNO Board/ESP-32 using Tinker CAD Verified Successfully.
 
